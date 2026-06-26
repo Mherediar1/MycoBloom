@@ -1,3 +1,753 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6b5638f442b0b8f7a2c3a31a62d748ce6edaac12a6d0790be6b25625580e9fec
-size 15219
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Reporte Modelo Micorrizas</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin:40px;
+    background-color:#f5f5f5;
+}
+
+h1 {
+    color:#1b4332;
+}
+
+h2 {
+    color:#2d6a4f;
+    margin-top:30px;
+}
+
+table {
+    border-collapse:collapse;
+    width:100%;
+    background-color:white;
+    margin-top:10px;
+}
+
+th,td {
+    border:1px solid #cccccc;
+    padding:8px;
+    text-align:center;
+}
+
+th {
+    background-color:#95d5b2;
+}
+
+p {
+    font-size:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+Reporte del Modelo de Identificación de Micorrizas Arbusculares
+</h1>
+
+<hr>
+
+
+<h2>Variable objetivo</h2>
+
+<p>
+
+La variable objetivo utilizada fue:
+
+<b>nombre_cientifico</b>
+
+</p>
+
+
+<h2>Información general del dataset</h2>
+
+<p>
+
+Total registros:
+<b>1281</b>
+
+<br>
+
+Total especies:
+<b>204</b>
+
+<br>
+
+Variables predictoras:
+<b>304</b>
+
+</p>
+
+
+
+<h2>División del dataset</h2>
+
+<p>
+
+Entrenamiento:
+<b>80%</b>
+
+(
+<b>1024</b>
+registros
+)
+
+<br>
+
+Prueba:
+<b>20%</b>
+
+(
+<b>257</b>
+registros
+)
+
+<br><br>
+
+Validación cruzada:
+<b>5-Fold Estratificada</b>
+
+<br>
+
+En cada iteración se utilizó aproximadamente el
+<b>20%</b>
+del conjunto de entrenamiento para validación.
+
+</p>
+
+
+
+<h2>Mejor modelo seleccionado</h2>
+
+<p>
+
+<b>Random Forest</b>
+
+</p>
+
+
+<h2>Métricas iniciales</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Modelo</th>
+      <th>Accuracy (%)</th>
+      <th>Precision (%)</th>
+      <th>Recall (%)</th>
+      <th>F1-score (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Forest</td>
+      <td>97.67</td>
+      <td>97.22</td>
+      <td>97.79</td>
+      <td>97.27</td>
+    </tr>
+    <tr>
+      <td>XGBoost</td>
+      <td>96.89</td>
+      <td>96.32</td>
+      <td>97.06</td>
+      <td>96.36</td>
+    </tr>
+    <tr>
+      <td>LightGBM</td>
+      <td>95.33</td>
+      <td>94.93</td>
+      <td>95.83</td>
+      <td>94.84</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Resultados validación cruzada</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Modelo</th>
+      <th>Accuracy CV (%)</th>
+      <th>Precision CV (%)</th>
+      <th>Recall CV (%)</th>
+      <th>F1-score CV (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Forest Ajustado</td>
+      <td>96.10</td>
+      <td>95.14</td>
+      <td>96.20</td>
+      <td>95.28</td>
+    </tr>
+    <tr>
+      <td>XGBoost Ajustado</td>
+      <td>95.12</td>
+      <td>94.40</td>
+      <td>95.64</td>
+      <td>94.57</td>
+    </tr>
+    <tr>
+      <td>LightGBM Ajustado</td>
+      <td>95.12</td>
+      <td>94.10</td>
+      <td>95.37</td>
+      <td>94.25</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Resultados finales en conjunto de prueba</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Modelo</th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1-score</th>
+      <th>Error (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Forest</td>
+      <td>97.28</td>
+      <td>96.81</td>
+      <td>97.39</td>
+      <td>96.80</td>
+      <td>2.72</td>
+    </tr>
+    <tr>
+      <td>XGBoost</td>
+      <td>96.50</td>
+      <td>96.24</td>
+      <td>96.81</td>
+      <td>96.11</td>
+      <td>3.50</td>
+    </tr>
+    <tr>
+      <td>LightGBM</td>
+      <td>96.11</td>
+      <td>95.59</td>
+      <td>96.32</td>
+      <td>95.54</td>
+      <td>3.89</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Análisis Overfitting / Underfitting</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Modelo</th>
+      <th>Train Accuracy (%)</th>
+      <th>Test Accuracy (%)</th>
+      <th>Train F1 (%)</th>
+      <th>Test F1 (%)</th>
+      <th>Diferencia Accuracy (%)</th>
+      <th>Diferencia F1 (%)</th>
+      <th>Diagnostico</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Forest</td>
+      <td>99.8</td>
+      <td>97.28</td>
+      <td>99.81</td>
+      <td>96.80</td>
+      <td>2.53</td>
+      <td>3.01</td>
+      <td>Buen ajuste</td>
+    </tr>
+    <tr>
+      <td>XGBoost</td>
+      <td>99.8</td>
+      <td>96.50</td>
+      <td>99.81</td>
+      <td>96.11</td>
+      <td>3.31</td>
+      <td>3.69</td>
+      <td>Buen ajuste</td>
+    </tr>
+    <tr>
+      <td>LightGBM</td>
+      <td>99.9</td>
+      <td>96.11</td>
+      <td>99.88</td>
+      <td>95.54</td>
+      <td>3.79</td>
+      <td>4.34</td>
+      <td>Buen ajuste</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Top 20 variables más importantes</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variable</th>
+      <th>Importancia (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tam_promedio</td>
+      <td>3.81</td>
+    </tr>
+    <tr>
+      <td>tam_min</td>
+      <td>3.57</td>
+    </tr>
+    <tr>
+      <td>tam_max</td>
+      <td>3.57</td>
+    </tr>
+    <tr>
+      <td>numero_paredes</td>
+      <td>2.72</td>
+    </tr>
+    <tr>
+      <td>melzer_negativa</td>
+      <td>1.28</td>
+    </tr>
+    <tr>
+      <td>melzer_positiva</td>
+      <td>1.25</td>
+    </tr>
+    <tr>
+      <td>color_Amarillo</td>
+      <td>1.24</td>
+    </tr>
+    <tr>
+      <td>planta_Multiples</td>
+      <td>1.19</td>
+    </tr>
+    <tr>
+      <td>color_Marron</td>
+      <td>1.13</td>
+    </tr>
+    <tr>
+      <td>color_Hialino</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <td>planta_Poaceae</td>
+      <td>1.04</td>
+    </tr>
+    <tr>
+      <td>tex_sup_laminada</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <td>color_Naranja</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <td>color_Blanco</td>
+      <td>0.96</td>
+    </tr>
+    <tr>
+      <td>tex_orn_lisa</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <td>tex_sup_lisa</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <td>tex_est_lisa</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <td>tex_est_laminada</td>
+      <td>0.86</td>
+    </tr>
+    <tr>
+      <td>forma_Ovoide</td>
+      <td>0.85</td>
+    </tr>
+    <tr>
+      <td>tex_cons_laminada</td>
+      <td>0.85</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Prueba final del modelo</h2>
+
+<p>
+
+<b>Especie predicha:</b>
+
+Dentiscutata reticulata
+
+</p>
+
+<p>
+
+<b>Especie real:</b>
+
+Dentiscutata reticulata
+
+</p>
+
+
+
+<h2>Top 3 especies más probables</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Especie</th>
+      <th>Probabilidad (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dentiscutata reticulata</td>
+      <td>57.01</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata nigerita</td>
+      <td>7.29</td>
+    </tr>
+    <tr>
+      <td>Scutellospora tepuiensis</td>
+      <td>4.25</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Información asociada a la especie predicha</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>genero</th>
+      <th>familia</th>
+      <th>nombre_cientifico</th>
+      <th>pais</th>
+      <th>localidad</th>
+      <th>tamaño_espora</th>
+      <th>forma</th>
+      <th>color</th>
+      <th>conexion_hifal</th>
+      <th>numero_paredes</th>
+      <th>tipo_pared</th>
+      <th>habitat</th>
+      <th>vegetacion</th>
+      <th>altitud_msnm</th>
+      <th>ph_suelo</th>
+      <th>textura_suelo</th>
+      <th>temperatura</th>
+      <th>cluster_ITS</th>
+      <th>cluster_genetico</th>
+      <th>genetic_similarity_pct</th>
+      <th>particularidad</th>
+      <th>plantas_hospederas</th>
+      <th>informacion_especie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Cerrado</td>
+      <td>180-390 µm</td>
+      <td>Globosa</td>
+      <td>Marrón rojizo oscuro a negro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Suelo tropical</td>
+      <td>Pastizal</td>
+      <td>200-800</td>
+      <td>5.0-6.5</td>
+      <td>Arenoso</td>
+      <td>24-32 °C</td>
+      <td>Dentiscutata_reticulata_ITS_01</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>98.2</td>
+      <td>Presenta superficie poligonal con espinas densas en el centro de cada celda.</td>
+      <td>Gramíneas</td>
+      <td>Hongo micorrícico con esporas grandes y pared externa fuertemente ornamentada con patrón reticulado.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Goiás</td>
+      <td>180-390 µm</td>
+      <td>Subglobosa</td>
+      <td>Marrón oscuro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Sabana tropical</td>
+      <td>Natural</td>
+      <td>300-900</td>
+      <td>5.2-6.3</td>
+      <td>Franco arenoso</td>
+      <td>25-33 °C</td>
+      <td>Dentiscutata_reticulata_ITS_02</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>97.9</td>
+      <td>Retícula elevada formando estructuras tipo meseta.</td>
+      <td>Gramíneas nativas</td>
+      <td>Esporas con estructura compleja que dificulta la visualización de capas internas.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Mato Grosso</td>
+      <td>180-390 µm</td>
+      <td>Globosa</td>
+      <td>Marrón rojizo</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Agroecosistema</td>
+      <td>Cultivo</td>
+      <td>200-600</td>
+      <td>5.0-6.0</td>
+      <td>Franco</td>
+      <td>26-34 °C</td>
+      <td>Dentiscutata_reticulata_ITS_03</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>98.0</td>
+      <td>Espinas internas bien definidas dentro de la retícula.</td>
+      <td>Cultivos mixtos</td>
+      <td>Esporas con ornamentación externa prominente y altamente diagnóstica.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Bahia</td>
+      <td>180-390 µm</td>
+      <td>Subglobosa</td>
+      <td>Negro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Suelo tropical</td>
+      <td>Pastizal</td>
+      <td>100-500</td>
+      <td>5.3-6.2</td>
+      <td>Arenoso</td>
+      <td>24-31 °C</td>
+      <td>Dentiscutata_reticulata_ITS_04</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>97.8</td>
+      <td>Escudo de germinación con patrón laberíntico complejo.</td>
+      <td>Gramíneas</td>
+      <td>Esporas con capas externas dominantes que ocultan estructuras internas.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Tocantins</td>
+      <td>180-390 µm</td>
+      <td>Globosa</td>
+      <td>Marrón oscuro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Sabana</td>
+      <td>Natural</td>
+      <td>250-700</td>
+      <td>5.1-6.4</td>
+      <td>Franco arenoso</td>
+      <td>25-33 °C</td>
+      <td>Dentiscutata_reticulata_ITS_05</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>98.3</td>
+      <td>Reticulación con celdas poligonales bien definidas.</td>
+      <td>Gramíneas tropicales</td>
+      <td>Esporas con superficie altamente diferenciada visible a bajo aumento.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Pará</td>
+      <td>180-390 µm</td>
+      <td>Subglobosa</td>
+      <td>Marrón rojizo oscuro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Agroecosistema</td>
+      <td>Cultivo</td>
+      <td>150-500</td>
+      <td>5.0-6.2</td>
+      <td>Franco</td>
+      <td>26-34 °C</td>
+      <td>Dentiscutata_reticulata_ITS_06</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>97.7</td>
+      <td>Capa intermedia laminada dominante en espesor.</td>
+      <td>Cultivos</td>
+      <td>Asociada a suelos tropicales con actividad biológica alta.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Minas Gerais</td>
+      <td>180-390 µm</td>
+      <td>Globosa</td>
+      <td>Negro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Suelo natural</td>
+      <td>Pastizal</td>
+      <td>300-900</td>
+      <td>5.2-6.3</td>
+      <td>Arenoso</td>
+      <td>24-32 °C</td>
+      <td>Dentiscutata_reticulata_ITS_07</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>98.1</td>
+      <td>Estructura interna difícil de observar por la complejidad de la pared.</td>
+      <td>Gramíneas</td>
+      <td>Esporas con fuerte adaptación a suelos ácidos tropicales.</td>
+    </tr>
+    <tr>
+      <td>Dentiscutata</td>
+      <td>Gigasporaceae</td>
+      <td>Dentiscutata reticulata</td>
+      <td>Brasil</td>
+      <td>Amazonas</td>
+      <td>180-390 µm</td>
+      <td>Subglobosa</td>
+      <td>Marrón oscuro a negro</td>
+      <td>Suspensor bulboso</td>
+      <td>3</td>
+      <td>Multicapa</td>
+      <td>Suelo tropical</td>
+      <td>Natural</td>
+      <td>100-400</td>
+      <td>5.1-6.5</td>
+      <td>Franco arenoso</td>
+      <td>26-34 °C</td>
+      <td>Dentiscutata_reticulata_ITS_08</td>
+      <td>Dentiscutataceae_ITS_clade</td>
+      <td>98.0</td>
+      <td>Escudo germinativo con invaginaciones tipo laberinto.</td>
+      <td>Gramíneas tropicales</td>
+      <td>Hongo caracterizado por su compleja arquitectura de pared esporal.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Conclusión final</h2>
+
+<p>
+El modelo <b>Random Forest</b> presentó el mejor desempeño general durante las pruebas realizadas,
+alcanzando un Accuracy de <b>97.28%</b>, Precision de <b>96.81%</b>,
+Recall de <b>97.39%</b>, F1-score de <b>96.80%</b> y un error de
+<b>2.72%</b>.
+</p>
+
+<p>
+
+De acuerdo con el análisis de entrenamiento y prueba, el diagnóstico del modelo fue:
+
+<b>Buen ajuste</b>.
+
+
+    Esto indica que el modelo seleccionado presenta un comportamiento estable y una adecuada capacidad de generalización sobre datos no observados.
+    
+
+</p>
+
+
+<h2>Nota final</h2>
+
+<p>
+
+Para el entrenamiento del modelo se utilizaron únicamente las variables que estarán disponibles
+en la interfaz web, permitiendo que el modelo aprenda utilizando información real ingresada por el usuario.
+
+</p>
+
+<p>
+
+Para el desarrollo de los modelos de aprendizaje automático, el conjunto de datos fue dividido en:
+<b>80%</b> para entrenamiento
+(<b>1024</b> registros)
+y
+<b>20%</b> para pruebas
+(<b>257</b> registros),
+manteniendo la distribución de clases mediante una partición estratificada.
+
+</p>
+
+<p>
+
+Posteriormente, sobre el conjunto de entrenamiento se aplicó
+<b>validación cruzada estratificada de 5 particiones (5-Fold Cross Validation)</b>,
+utilizando aproximadamente el
+<b>20%</b>
+de los datos de entrenamiento para validación en cada iteración.
+
+</p>
+
+<p>
+
+La evaluación se realizó mediante validación cruzada estratificada y métricas de desempeño como
+Accuracy, Precision, Recall, F1-score y Error.
+
+</p>
+
+
+</body>
+
+</html>
+
