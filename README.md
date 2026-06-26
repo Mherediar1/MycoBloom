@@ -101,7 +101,7 @@ package.json
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU_USUARIO/MycoBloom.git
+git clone https://github.com/Mherediar1/MycoBloom.git
 ```
 
 ### 2. Instalar dependencias de Node.js
