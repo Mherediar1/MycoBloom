@@ -1,0 +1,6 @@
+{
+  "name": "Mycobloom: Sistema Experto HMA",
+  "description": "Cliente web desarrollado con React, TypeScript y Vite, estilos con Tailwind CSS, enrutamiento con React Router; servidor API en Python con FastAPI y Uvicorn, validación con Pydantic, comunicación por HTTP/JSON.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

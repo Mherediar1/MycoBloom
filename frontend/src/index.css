@@ -1,0 +1,280 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-bg-dark: #050505;
+  --color-card-bg: #0c0c0c;
+  --color-accent: #4ade80;
+  --color-text-main: #ffffff;
+  --color-text-dim: #8e8e8e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg-dark text-text-main font-sans antialiased min-h-screen relative;
+    background-image: 
+      linear-gradient(to bottom, rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0.99)),
+      url('https://picsum.photos/seed/mycelium/1920/1080?blur=10');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
+  label {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-size: 0.875rem !important;
+    opacity: 0.85 !important;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/5 rounded-full hover:bg-white/10 transition-colors;
+  }
+}
+
+@layer components {
+  .bento-card {
+    @apply bg-card-bg rounded-2xl sm:rounded-3xl md:rounded-[2.5rem] border border-white/5 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)];
+  }
+  
+  .glow-accent {
+    @apply shadow-[0_0_20px_rgba(74,222,128,0.1)];
+  }
+  
+  .tech-label {
+    @apply font-mono text-[0.6rem] uppercase tracking-widest opacity-40;
+  }
+}
+
+/* High Contrast Accessibility Overrides (Comfortable Soft Sage & Graphite Theme) */
+body.high-contrast {
+  --color-bg-dark: #ebede9 !important; /* Beautiful calm sage gray-white, exceptionally relaxing for eyes */
+  --color-card-bg: #f5f6f4 !important; /* Soft white-gray surface instead of blinding pure white */
+  --color-accent: #0b665c !important; /* Robust accessible teal passing WCAG AA 4.5:1 */
+  --color-text-main: #181c1a !important; /* Soft deep graphite-coal instead of harsh pure black */
+  --color-text-dim: #434c48 !important; /* Highly legible neutral dark slate for descriptions */
+  
+  background-color: #ebede9 !important;
+  background-image: none !important;
+  color: #181c1a !important;
+}
+
+body.high-contrast * {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Scrollbars */
+body.high-contrast ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Layout Elements & Prediction Result Cards */
+body.high-contrast .bento-card,
+body.high-contrast [class*="bg-gradient-"]:not(.carousel-overlay) {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background-color: #f5f6f4 !important; /* Ergonomic soft gray card element */
+  background-image: none !important; /* Disabling gradient overlays to prevent eye fatigue */
+}
+
+/* Carousel accessibility and image appreciation in comfortable reading mode */
+body.high-contrast .carousel-overlay {
+  background-image: linear-gradient(to top, rgba(10, 15, 12, 0.88) 0%, rgba(10, 15, 12, 0.4) 50%, rgba(10, 15, 12, 0) 100%) !important;
+  background-color: transparent !important;
+}
+
+body.high-contrast h3.carousel-title {
+  color: #10b981 !important; /* Vibrant brand green to match MycoBloom identity */
+  filter: none !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.high-contrast p.carousel-desc {
+  color: #ffffff !important; /* Pure white for absolute high-contrast reading readability against dark bottom gradient */
+  filter: none !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.high-contrast .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.high-contrast header,
+body.high-contrast footer {
+  background-color: #ebede9 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* Input Fields and Select Dropdowns Labels */
+body.high-contrast label {
+  color: #181c1a !important; /* Deep coal slate for outstanding visual label density */
+  opacity: 1 !important; /* Remove translucency for perfect legibility */
+}
+
+/* Text Overrides to guarantee absolute readability */
+body.high-contrast .text-white,
+body.high-contrast .text-text-main,
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+  color: #181c1a !important;
+}
+
+body.high-contrast p,
+body.high-contrast span:not(.text-accent),
+body.high-contrast li,
+body.high-contrast td,
+body.high-contrast th,
+body.high-contrast a:not(.text-accent) {
+  color: #1c221e !important;
+}
+
+body.high-contrast .text-accent {
+  color: #0b665c !important;
+}
+
+body.high-contrast .text-text-dim,
+body.high-contrast .text-white/60,
+body.high-contrast .text-white/50,
+body.high-contrast .text-white/40,
+body.high-contrast .text-zinc-400,
+body.high-contrast .text-slate-400 {
+  color: #434c48 !important;
+}
+
+body.high-contrast .text-white/70 {
+  color: #1c221e !important;
+}
+
+body.high-contrast .text-white/40 {
+  color: #555e5b !important;
+}
+
+/* Specific elements containing transparent tints mapped to solid bright white to rise from cards */
+body.high-contrast .bg-white/5,
+body.high-contrast .bg-white/10,
+body.high-contrast .bg-white/50,
+body.high-contrast .bg-white/\[0\.02\],
+body.high-contrast .bg-white/\[0\.03\],
+body.high-contrast .bg-white/\[0\.04\],
+body.high-contrast .bg-white/\[0\.05\],
+body.high-contrast .bg-white/\[0\.08\] {
+  background-color: #ffffff !important;
+}
+
+body.high-contrast .bg-accent/10,
+body.high-contrast .bg-accent/20 {
+  background-color: #e5edea !important; /* Pleasant soft organic moss tint */
+  color: #0b665c !important;
+}
+
+body.high-contrast .bg-bg-dark/40,
+body.high-contrast .bg-bg-dark/80,
+body.high-contrast .bg-bg-dark/95 {
+  background-color: rgba(235, 237, 233, 0.95) !important;
+}
+
+body.high-contrast .bg-accent {
+  background-color: #0b665c !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast .bg-accent .text-bg-dark,
+body.high-contrast .bg-accent * {
+  color: #ffffff !important;
+}
+
+/* Inputs, drop-downs and selection menus */
+body.high-contrast input,
+body.high-contrast select,
+body.high-contrast textarea {
+  background-color: #ffffff !important;
+  color: #181c1a !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+body.high-contrast input::placeholder {
+  color: #717d79 !important;
+}
+
+body.high-contrast .placeholder-white/30::placeholder {
+  color: #717d79 !important;
+}
+
+body.high-contrast option {
+  background-color: #ffffff !important;
+  color: #181c1a !important;
+}
+
+body.high-contrast .bg-\[\#141414\] {
+  background-color: #ffffff !important;
+  color: #181c1a !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Interactive Hovers */
+body.high-contrast .hover\:bg-accent:hover {
+  background-color: #115e59 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast .hover\:text-white:hover {
+  color: #000000 !important;
+}
+
+body.high-contrast .group\/btn:hover {
+  background-color: #115e59 !important;
+}
+
+body.high-contrast .hover\:bg-white\/\[0\.04\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+body.high-contrast .glow-accent {
+  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.15) !important;
+}
+
+body.high-contrast .border-accent\/20,
+body.high-contrast .border-accent\/30,
+body.high-contrast .border-accent\/40 {
+  border-color: rgba(15, 118, 110, 0.25) !important;
+}
+
+/* Additional layout fixes */
+body.high-contrast svg {
+  stroke-linejoin: round;
+}
+
+body.high-contrast .similarity-track {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.high-contrast .similarity-bar {
+  background-color: #0b665c !important;
+}
+
